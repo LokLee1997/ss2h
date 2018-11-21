@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="po">
+<class name="Category" table="categorys">
+<id name="id" type="integer">
+<generator class="native"/>
+</id>
+<property name="categoryName" type="string" length="12" not-null="true"/>
+<set name="news" inverse="true" cascade="save-update,delete" lazy="false">
+  <key column="c_id"/>
+  <one-to-many class="News"/>
+  </set>
+</class>
+</hibernate-mapping>

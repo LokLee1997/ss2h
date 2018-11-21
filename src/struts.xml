@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC 
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" 
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<package name="person" extends="struts-default" namespace="/">
+		<action name="*" class="action.PersonAction" method="{1}">
+			<result name="success" type="redirectAction">
+				<param name="actionName">list</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="login_success" type="redirect">/index.jsp</result>
+			<result name="login_exit" type="redirect">/index.jsp</result>
+			<result name="register" type="redirect">/regist.jsp</result>
+			<result name="list" type="redirect">/list.jsp</result>
+			<result name="index" type="redirect">/index.jsp</result>
+			<allowed-methods>registerInput,list,addPerson,login,exit</allowed-methods>
+		</action>
+	</package>
+	
+	<package name="category" extends="struts-default" namespace="/">
+		<action name="add_page" class="action.CategoryAction" method="add_page">
+			<result name="add_page">/categoryAdd.jsp</result>
+		</action>
+		<action name="add" class="action.CategoryAction" method="add">
+			<result name="success">/categoryList.jsp</result>
+		</action>
+		<action name="updateCategory" class="action.CategoryAction" method="update_page">
+			<result name="update_page">/categoryUpdate.jsp</result>
+		</action>
+		<action name="updatedCategory" class="action.CategoryAction" method="updated">
+			<result name="success" type="redirect">/categoryList.jsp</result>
+			<result name="false" type="chain">updateCategory</result>
+		</action>
+		<action name="deleteCategory" class="action.CategoryAction" method="delete">
+			<result name="success" type="redirect">/categoryList.jsp</result>
+		</action>
+		<action name="listCategory" class="action.CategoryAction" method="listCategory">
+			<result name="listCategory">/categoryList.jsp</result>
+		</action>
+	</package>
+	
+	<package name="news" extends="struts-default" namespace="/">
+		<action name="addNew" class="action.NewAction" method="addNew">
+			<result name="success" type="redirectAction">
+				<param name="actionName">listNew</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="addNp" class="action.NewAction" method="add">
+			<result name="addNews_page" >/newAdd.jsp</result>
+		</action>
+		<action name="updateNew" class="action.NewAction" method="updateNew">
+			<result name="updateNews_page">/newUpdate.jsp</result>
+		</action>
+		<action name="updatedNew" class="action.NewAction" method="updatedNew">
+			<result name="success" type="redirectAction">
+				<param name="actionName">listNew</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="deleteNew" class="action.NewAction" method="deleteNew">
+			<result name="success" type="redirectAction">
+				<param name="actionName">listNew</param>
+				<param name="namespace">/</param>
+			</result>
+		</action>
+		<action name="listNew" class="action.NewAction" method="listNew">
+			<result name="list">/newList.jsp</result>
+		</action>
+		<action name="listNews" class="action.NewAction" method="listNew">
+			<result name="list">/index_list.jsp</result>
+		</action>
+		<action name="showNews" class="action.NewAction" method="showNews">
+			<result name="showNews">/newShow.jsp</result>
+		</action>
+		<action name="findByCategory" class="action.NewAction" method="findByCategory">
+			<result name="list">/newList.jsp</result>
+		</action>
+		<action name="getByCategory" class="action.NewAction" method="findByCategory">
+			<result name="list">/index_serach.jsp</result>
+		</action>
+		<action name="findByKW" class="action.NewAction" method="findByKW">
+			<result name="list">/newList.jsp</result>
+		</action>
+		<action name="getByKW" class="action.NewAction" method="findByKW">
+			<result name="list">/index_serach.jsp</result>
+		</action>
+	</package>
+	
+	 
+	 <package name="ajax" extends="struts-default,json-default" namespace="/">   
+        <action name="personJsonAction_checkUsername" class="action.PersonAction" method="checkUsername">
+        	<result type="json"></result>
+        </action>
+       	<action name="personJsonAction_checkPhone" class="action.PersonAction" method="checkPhone">
+       		<result type="json"></result>
+       	</action>
+       	<action name="personJsonAction_checkEmail" class="action.PersonAction" method="checkEmail">
+       		<result type="json"></result>
+       	</action>
+       	<action name="personJsonAction_login" class="action.PersonAction" method="checklogin">
+       		<result type="json"></result>
+       	</action>
+       	<action name="categoryJsonAction_getcategorys" class="action.CategoryAction" method="list">
+       		<result type="json">
+       			<param name="root">result</param>
+       		</result>
+       	</action>
+       	<action name="categoryJsonAction_checkCategoryName" class="action.CategoryAction" method="checkCategoryName">
+       		<result type="json"></result>
+       	</action>
+       	
+    </package>   
+	
+</struts>    

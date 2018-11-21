@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="po">
+	<class name="Person" table="person">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="username" type="string" length="12" column="username" not-null="true"/>
+		<property name="password" type="string" length="20" column="password" not-null="true"/>
+		<property name="address" type="string" length="50" column="address"></property>
+		<property name="phone" type="string" length="11" column="phone"></property>
+		<property name="email" type="string" length="50" column="email"></property>
+	</class>
+</hibernate-mapping>
